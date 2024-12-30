@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This file is just for the ease of creating new projects -->
+<!-- Settings here are readily available in project settings dialog, just scattered in many places -->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <ItemDefinitionGroup>
+        <Link>
+            <!-- Important: Set this to the LIBRARY directive name used in DEF file -->
+            <DelayLoadDLLs>VERSION.DLL</DelayLoadDLLs>
+            <!-- Tell the linker to use the exports from target DLL -->
+            <ModuleDefinitionFile>exports.def</ModuleDefinitionFile>
+            <!-- Ignore LNK4070 (LIBRARY directive name mismatch) -->
+            <AdditionalOptions>/IGNORE:4070 %(AdditionalOptions)</AdditionalOptions>
+        </Link>
+        
+        <!-- A custom build rule for pre-processing the DEF file into an import library used as input -->
+        <CustomBuild>
+            <Message>Generating import library from %(Identity)</Message>
+            <Command>LIB /NOLOGO /MACHINE:$(PlatformTargetAsMSBuildArchitecture) /DEF:%(Identity) /OUT:$(IntDir)%(Filename).lib</Command>
+            <Outputs>$(IntDir)%(Filename).lib;$(IntDir)%(Filename).exp;%(Outputs)</Outputs>
+        </CustomBuild>
+    </ItemDefinitionGroup>
+    
+    <ItemGroup>
+        <!-- Utilize the build rule defined above to generate import library to target DLL -->
+        <CustomBuild Include="exports.def" />
+    </ItemGroup>
+</Project>

@@ -1,0 +1,3 @@
+[submodule "Core/Detours/repo"]
+	path = Core/Detours/repo
+	url = https://github.com/microsoft/Detours
