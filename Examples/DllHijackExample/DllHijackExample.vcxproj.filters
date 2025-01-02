@@ -9,7 +9,6 @@
     <ClCompile Include="delayhook.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="exports.def" />
     <None Include="Directory.Build.props" />
   </ItemGroup>
   <ItemGroup>

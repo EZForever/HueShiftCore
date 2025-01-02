@@ -1,22 +1,22 @@
-; You need to provide the export information in this file for populating the EAT of Core DLL
-; Generating it should be trivial, but remember to include ordinals to exports as shown below, and do not use redirection strings
+; You need to provide the export information in this file for populating the EAT of Core DLL; generating it should be trivial
+; Note that forward exports (e.g. `VerFindFileA=VERSION.VerFindFileA`) WILL NOT WORK and breaks build process; do not use
 
-; NOTE: This directive is mandatory and used as a "marker" for the DLL to hijack
+; This directive is mandatory and used as a "marker" for the DLL to hijack
 ; If you modified this, remember to sync with config.h and Directory.build.props
 LIBRARY VERSION.DLL
 
 EXPORTS
-	GetFileVersionInfoA @1
-	GetFileVersionInfoByHandle @2
-	GetFileVersionInfoExA @3
-	GetFileVersionInfoExW @4
-	GetFileVersionInfoSizeA @5
-	GetFileVersionInfoSizeExA @6
-	GetFileVersionInfoSizeExW @7
-	GetFileVersionInfoSizeW @8
-	GetFileVersionInfoW @9
-	VerFindFileA @10
-	VerFindFileW @11
+	GetFileVersionInfoA
+	GetFileVersionInfoByHandle
+	GetFileVersionInfoExA
+	GetFileVersionInfoExW
+	GetFileVersionInfoSizeA
+	GetFileVersionInfoSizeExA
+	GetFileVersionInfoSizeExW
+	GetFileVersionInfoSizeW
+	GetFileVersionInfoW=xGetFileVersionInfoW ; If you wish to hook a function in hijacked DLL, do it like this; see hook.cpp for details
+	VerFindFileA @10 ; If you wish to make sure the ordinals match with hijacked DLL, specify them manually like this
+	VerFindFileW @11 ; And make sure the specified ordinals are correct, since Core DLL will use them to find original routines
 	VerInstallFileA @12
 	VerInstallFileW @13
 	VerLanguageNameA @14

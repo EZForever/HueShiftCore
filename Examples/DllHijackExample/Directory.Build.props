@@ -8,6 +8,8 @@
             <DelayLoadDLLs>VERSION.DLL</DelayLoadDLLs>
             <!-- Tell the linker to use the exports from target DLL -->
             <ModuleDefinitionFile>exports.def</ModuleDefinitionFile>
+            <!-- Set linker option /DELAY:NOBIND, which disables the bound IAT that don't really serve any purpose -->
+            <SupportNobindOfDelayLoadedDLL>true</SupportNobindOfDelayLoadedDLL>
             <!-- Ignore LNK4070 (LIBRARY directive name mismatch) -->
             <AdditionalOptions>/IGNORE:4070 %(AdditionalOptions)</AdditionalOptions>
         </Link>
@@ -22,6 +24,7 @@
     
     <ItemGroup>
         <!-- Utilize the build rule defined above to generate import library to target DLL -->
+        <!-- Project load errors may occur if your project have exports.def included manually; if that happens, remove `<None Include="exports.def" />` lines from your .vcxproj and .filters files -->
         <CustomBuild Include="exports.def" />
     </ItemGroup>
 </Project>
