@@ -15,6 +15,6 @@
 #define HUESHIFT_SHARE_CONSOLE
 
 // Use DetourCreateProcessWithDllEx() instead of custom routine for injecting Core DLL
-// Somehow prone to failure, not recommended
+// Prone to failure and breaks IatCore, not recommended
 //#define HUESHIFT_LAUNCH_WITH_DETOURS
 

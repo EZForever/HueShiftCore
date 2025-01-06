@@ -1,12 +1,12 @@
-#pragma once
+#include "config.h"
+
+#if defined(HUESHIFT_HIJACK_FROM) && defined(HUESHIFT_HIJACK_TO)
 
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #include <delayimp.h>
 
 #include <cstring>
-
-#include "config.h"
 
 #ifdef HUESHIFT_DUMMY_EXPORT
 #   error "HUESHIFT_DUMMY_EXPORT interferes with the EAT; do not use with this module"
@@ -40,3 +40,4 @@ FARPROC WINAPI DllDelayHook(unsigned dliNotify, PDelayLoadInfo pdli)
 ExternC const PfnDliHook __pfnDliNotifyHook2 = DllDelayHook;
 ExternC const PfnDliHook __pfnDliFailureHook2 = DllDelayHook;
 
+#endif // defined(HUESHIFT_HIJACK_FROM) && defined(HUESHIFT_HIJACK_TO)

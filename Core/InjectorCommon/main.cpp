@@ -1,5 +1,3 @@
-#pragma once
-
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #include <shlwapi.h>
@@ -98,7 +96,7 @@ bool LaunchVictim(DWORD dwCreationFlags, PROCESS_INFORMATION& pi)
 
 int main()
 {
-    _putws(L"HueShift Injector v0.0.3 Indev (" __DATE__ ", Build tag \"" HUESHIFT_BUILD_TAG "\")\n");
+    _putws(L"HueShift Injector v0.0.3 (" __DATE__ ", Build tag \"" HUESHIFT_BUILD_TAG "\")\n");
 
     if (!SetPrivilege(GetCurrentProcess(), SE_DEBUG_NAME, TRUE))
     {

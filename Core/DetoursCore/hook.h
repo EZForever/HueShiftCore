@@ -1,16 +1,20 @@
 #pragma once
-#include "common.h"
+
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
 
 #include <detours.h>
+
+bool __HookImplRegister(const char* szName, PVOID* ppvOriginal, const PVOID pvHandler);
 
 #define __HOOK_INSTANCE_BASE(proto, target, name) \
 	namespace __HookInstance_##proto \
 	{ \
 		typedef decltype(proto) ROUTINE, *PROUTINE; \
 		PROUTINE OriginalRoutine = target; \
-		\
 		ROUTINE HandlerRoutine; \
-		auto __init = __HookInitialize(name, (PVOID*)&OriginalRoutine, HandlerRoutine); \
+		\
+		auto __init = __HookImplRegister(name, (PVOID*)&OriginalRoutine, HandlerRoutine); \
 	} \
 	\
 	namespace __HookInstance_##proto // { ... }

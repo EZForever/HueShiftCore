@@ -19,6 +19,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InjectorExample", "Examples
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DllHijackExample", "Examples\DllHijackExample\DllHijackExample.vcxproj", "{DFDD77C1-2DC1-42E3-84FC-894AF140A4FF}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IatCore", "Core\IatCore\IatCore.vcxitems", "{A4A89E63-656B-4E8B-808D-E5F283A75B2D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DetoursCore", "Core\DetoursCore\DetoursCore.vcxitems", "{2AC54514-6914-4254-AACF-F3B6CB46EDEA}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IatExample", "Examples\IatExample\IatExample.vcxproj", "{7046EDD0-4EB1-464B-80D7-E52A5FCF5163}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -59,6 +65,14 @@ Global
 		{DFDD77C1-2DC1-42E3-84FC-894AF140A4FF}.Release|x64.Build.0 = Release|x64
 		{DFDD77C1-2DC1-42E3-84FC-894AF140A4FF}.Release|x86.ActiveCfg = Release|Win32
 		{DFDD77C1-2DC1-42E3-84FC-894AF140A4FF}.Release|x86.Build.0 = Release|Win32
+		{7046EDD0-4EB1-464B-80D7-E52A5FCF5163}.Debug|x64.ActiveCfg = Debug|x64
+		{7046EDD0-4EB1-464B-80D7-E52A5FCF5163}.Debug|x64.Build.0 = Debug|x64
+		{7046EDD0-4EB1-464B-80D7-E52A5FCF5163}.Debug|x86.ActiveCfg = Debug|Win32
+		{7046EDD0-4EB1-464B-80D7-E52A5FCF5163}.Debug|x86.Build.0 = Debug|Win32
+		{7046EDD0-4EB1-464B-80D7-E52A5FCF5163}.Release|x64.ActiveCfg = Release|x64
+		{7046EDD0-4EB1-464B-80D7-E52A5FCF5163}.Release|x64.Build.0 = Release|x64
+		{7046EDD0-4EB1-464B-80D7-E52A5FCF5163}.Release|x86.ActiveCfg = Release|Win32
+		{7046EDD0-4EB1-464B-80D7-E52A5FCF5163}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,12 +84,21 @@ Global
 		{923129D1-A916-4CCE-B76A-52C3F36309BA} = {9C13C95E-9D6B-404C-B27A-9DA947C5B1D7}
 		{3BC1BB17-9D98-43A6-BD30-0532317A9F0B} = {9C13C95E-9D6B-404C-B27A-9DA947C5B1D7}
 		{DFDD77C1-2DC1-42E3-84FC-894AF140A4FF} = {9C13C95E-9D6B-404C-B27A-9DA947C5B1D7}
+		{A4A89E63-656B-4E8B-808D-E5F283A75B2D} = {6F832A72-8084-4E17-8FE7-E8A52578FCD0}
+		{2AC54514-6914-4254-AACF-F3B6CB46EDEA} = {6F832A72-8084-4E17-8FE7-E8A52578FCD0}
+		{7046EDD0-4EB1-464B-80D7-E52A5FCF5163} = {9C13C95E-9D6B-404C-B27A-9DA947C5B1D7}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Core\CoreCommon\CoreCommon.vcxitems*{139a24b9-652e-4e88-9e15-fcd6ea0454eb}*SharedItemsImports = 9
+		Core\DetoursCore\DetoursCore.vcxitems*{2ac54514-6914-4254-aacf-f3b6cb46edea}*SharedItemsImports = 9
 		Core\InjectorCommon\InjectorCommon.vcxitems*{3bc1bb17-9d98-43a6-bd30-0532317a9f0b}*SharedItemsImports = 4
+		Core\CoreCommon\CoreCommon.vcxitems*{7046edd0-4eb1-464b-80d7-e52a5fcf5163}*SharedItemsImports = 4
+		Core\IatCore\IatCore.vcxitems*{7046edd0-4eb1-464b-80d7-e52a5fcf5163}*SharedItemsImports = 4
 		Core\CoreCommon\CoreCommon.vcxitems*{923129d1-a916-4cce-b76a-52c3f36309ba}*SharedItemsImports = 4
+		Core\DetoursCore\DetoursCore.vcxitems*{923129d1-a916-4cce-b76a-52c3f36309ba}*SharedItemsImports = 4
+		Core\IatCore\IatCore.vcxitems*{a4a89e63-656b-4e8b-808d-e5f283a75b2d}*SharedItemsImports = 9
 		Core\InjectorCommon\InjectorCommon.vcxitems*{a6e42887-be95-4d3f-bf8b-9731c9e10d88}*SharedItemsImports = 9
 		Core\CoreCommon\CoreCommon.vcxitems*{dfdd77c1-2dc1-42e3-84fc-894af140a4ff}*SharedItemsImports = 4
+		Core\DetoursCore\DetoursCore.vcxitems*{dfdd77c1-2dc1-42e3-84fc-894af140a4ff}*SharedItemsImports = 4
 	EndGlobalSection
 EndGlobal

@@ -3,7 +3,7 @@
   <PropertyGroup Label="Globals">
     <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
-    <ItemsProjectGuid>{139a24b9-652e-4e88-9e15-fcd6ea0454eb}</ItemsProjectGuid>
+    <ItemsProjectGuid>{a4a89e63-656b-4e8b-808d-e5f283a75b2d}</ItemsProjectGuid>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
@@ -14,9 +14,9 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)delayhook.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)dllmain.cpp" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)hookimpl.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)logging.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)hook.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)hookimpl.cpp" />
   </ItemGroup>
 </Project>

@@ -1,24 +1,17 @@
-#pragma once
-
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 
 #include <tuple>
 #include <cstdio>
 
-#include <detours.h>
-
-#include "hook.h"
 #include "logging.h"
+#include "hookimpl.h"
 
 #include "config.h"
 
 BOOL DllAttach(HMODULE hModule)
 {
-    g_hModule = hModule;
-
-    // Restore IAT if needed
-    DetourRestoreAfterWith();
+    HookImplInit();
 
 #ifdef HUESHIFT_ALLOC_CONSOLE
     // Allocate console (for debug output) if none exists
@@ -37,24 +30,9 @@ BOOL DllAttach(HMODULE hModule)
 #endif
 
     // Display some welcome message
-    LOG(L"libHueShift v0.0.1 Indev (" __DATE__ ", Build tag \"" HUESHIFT_BUILD_TAG "\")\n\n");
+    LOG(L"libHueShift v0.0.2 (" __DATE__ ", Build tag \"" HUESHIFT_BUILD_TAG "\")\n\n");
 
-    DetourTransactionBegin();
-    for (const auto& hook : g_hookInstances)
-    {
-        auto name = std::get<0>(hook);
-        auto pOriginal = std::get<1>(hook);
-        auto handler = std::get<2>(hook);
-        if (!*pOriginal)
-        {
-            LOG(L"[W] Hook routine %S could not be found, ignoring.\n", name);
-            continue;
-        }
-
-        LOG(L"[I] Hook %S = %p -> %p ...\n", name, *pOriginal, handler);
-        DetourAttach(pOriginal, handler);
-    }
-    DetourTransactionCommit();
+    HookImplInstall();
     LOG(L"[I] Routines hooked\n");
 
     return TRUE;
@@ -62,20 +40,7 @@ BOOL DllAttach(HMODULE hModule)
 
 BOOL DllDetach(HMODULE hModule)
 {
-    // Unhook critical functions
-    DetourTransactionBegin();
-    for (const auto& hook : g_hookInstances)
-    {
-        auto name = std::get<0>(hook);
-        auto pOriginal = std::get<1>(hook);
-        auto handler = std::get<2>(hook);
-        if (!*pOriginal)
-            continue;
-
-        LOG(L"[I] Unhook %S...\n", name);
-        DetourDetach(pOriginal, handler);
-    }
-    DetourTransactionCommit();
+    HookImplUninstall();
     LOG(L"[I] Routines unhooked\n");
 
 #ifdef HUESHIFT_ALLOC_CONSOLE
@@ -83,7 +48,6 @@ BOOL DllDetach(HMODULE hModule)
     FreeConsole();
 #endif
 
-    g_hModule = NULL;
     return TRUE;
 }
 
