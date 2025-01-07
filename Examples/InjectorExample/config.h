@@ -14,7 +14,12 @@
 // Useful for CLI victim programs
 #define HUESHIFT_SHARE_CONSOLE
 
-// Use DetourCreateProcessWithDllEx() instead of custom routine for injecting Core DLL
+// Enable SeDebugPrivilege before launching and injecting victim program
+// Should not be necessary in most cases since the process handle returned by CreateProcess() should have PROCESS_ALL_ACCESS rights
+//#define HUESHIFT_DEBUG_PRIVILEGE
+
+// Use DetourCreateProcessWithDllEx() instead of the well-known CreateRemoteThread+LoadLibrary technique for injecting Core DLL
+// Requires reference to Detours project
 // Prone to failure and breaks IatCore, not recommended
 //#define HUESHIFT_LAUNCH_WITH_DETOURS
 

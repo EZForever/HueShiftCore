@@ -6,7 +6,11 @@
 #include <cstdlib>
 #include <cstring>
 
+#ifdef HUESHIFT_LAUNCH_WITH_DETOURS
+
 #include <detours.h>
+
+#endif
 
 #include "config.h"
 
@@ -15,6 +19,8 @@
 WCHAR corePath[MAX_PATH];
 WCHAR victimPath[MAX_PATH];
 WCHAR* victimArgs;
+
+#ifdef HUESHIFT_DEBUG_PRIVILEGE
 
 BOOL SetPrivilege(HANDLE hProcess, LPCWSTR lpszPrivilege, BOOL bEnablePrivilege)
 {
@@ -43,6 +49,8 @@ BOOL SetPrivilege(HANDLE hProcess, LPCWSTR lpszPrivilege, BOOL bEnablePrivilege)
     CloseHandle(hToken);
     return TRUE;
 }
+
+#endif
 
 #ifdef HUESHIFT_LAUNCH_WITH_DETOURS
 
@@ -98,11 +106,13 @@ int main()
 {
     _putws(L"HueShift Injector v0.0.3 (" __DATE__ ", Build tag \"" HUESHIFT_BUILD_TAG "\")\n");
 
+#if HUESHIFT_DEBUG_PRIVILEGE
     if (!SetPrivilege(GetCurrentProcess(), SE_DEBUG_NAME, TRUE))
     {
         fwprintf(stderr, L"[F] SetPrivilege(SeDebugPrivilege) failed, GetLastError() = %d\n", GetLastError());
         return 1;
     }
+#endif
 
     WCHAR* _pFilePart;
     if (!SearchPathW(NULL, L"" HUESHIFT_CORE, NULL, MAX_PATH, corePath, &_pFilePart))

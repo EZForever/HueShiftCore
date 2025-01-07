@@ -19,11 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\Detours\Detours.vcxproj">
-      <Project>{c8d2c05e-499b-4e6e-9813-eddeafc02931}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="config.h" />
   </ItemGroup>
   <ItemGroup>
